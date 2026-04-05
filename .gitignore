@@ -1,0 +1,10 @@
+# Ignore data files
+data/raw/
+data/interim/
+data/processed/
+
+# Ignore Python environments and cache
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
