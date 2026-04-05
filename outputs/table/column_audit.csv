@@ -1,0 +1,146 @@
+column_name,dtype,non_null_count,null_count,null_pct,n_unique,sample_values,is_fully_null
+id,float64,0,50000,100.0,0,,True
+member_id,float64,0,50000,100.0,0,,True
+url,float64,0,50000,100.0,0,,True
+desc,float64,0,50000,100.0,0,,True
+hardship_type,float64,0,50000,100.0,0,,True
+hardship_reason,float64,0,50000,100.0,0,,True
+hardship_status,float64,0,50000,100.0,0,,True
+deferral_term,float64,0,50000,100.0,0,,True
+hardship_amount,float64,0,50000,100.0,0,,True
+hardship_start_date,float64,0,50000,100.0,0,,True
+hardship_end_date,float64,0,50000,100.0,0,,True
+payment_plan_start_date,float64,0,50000,100.0,0,,True
+hardship_length,float64,0,50000,100.0,0,,True
+hardship_dpd,float64,0,50000,100.0,0,,True
+hardship_loan_status,float64,0,50000,100.0,0,,True
+orig_projected_additional_accrued_interest,float64,0,50000,100.0,0,,True
+hardship_payoff_balance_amount,float64,0,50000,100.0,0,,True
+hardship_last_payment_amount,float64,0,50000,100.0,0,,True
+debt_settlement_flag_date,float64,0,50000,100.0,0,,True
+settlement_status,float64,0,50000,100.0,0,,True
+settlement_date,float64,0,50000,100.0,0,,True
+settlement_amount,float64,0,50000,100.0,0,,True
+settlement_percentage,float64,0,50000,100.0,0,,True
+settlement_term,float64,0,50000,100.0,0,,True
+sec_app_mths_since_last_major_derog,float64,1908,48092,96.18,101,"46.0, 25.0, 37.0",False
+verification_status_joint,str,5611,44389,88.78,3,"Verified, Not Verified, Source Verified",False
+mths_since_last_record,float64,5968,44032,88.06,109,"45.0, 75.0, 100.0",False
+sec_app_revol_util,float64,6190,43810,87.62,1024,"44.1, 78.9, 47.9",False
+sec_app_inq_last_6mths,float64,6280,43720,87.44,7,"2.0, 0.0, 0.0",False
+sec_app_chargeoff_within_12_mths,float64,6280,43720,87.44,8,"0.0, 0.0, 0.0",False
+sec_app_collections_12_mths_ex_med,float64,6280,43720,87.44,8,"0.0, 0.0, 0.0",False
+sec_app_mort_acc,float64,6280,43720,87.44,15,"3.0, 2.0, 3.0",False
+sec_app_open_act_il,float64,6280,43720,87.44,29,"0.0, 1.0, 0.0",False
+sec_app_open_acc,float64,6280,43720,87.44,50,"2.0, 9.0, 6.0",False
+sec_app_num_rev_accts,float64,6280,43720,87.44,56,"6.0, 12.0, 21.0",False
+sec_app_earliest_cr_line,str,6280,43720,87.44,508,"May-2002, Aug-2003, May-2003",False
+annual_inc_joint,float64,6280,43720,87.44,1548,"104424.0, 64793.0, 59500.0",False
+dti_joint,float64,6280,43720,87.44,2740,"10.77, 18.91, 10.59",False
+revol_bal_joint,float64,6280,43720,87.44,6019,"10286.0, 24654.0, 6902.0",False
+mths_since_recent_bc_dlq,float64,10028,39972,79.94,133,"33.0, 22.0, 48.0",False
+mths_since_last_major_derog,float64,11422,38578,77.16,137,"45.0, 22.0, 6.0",False
+mths_since_recent_revol_delinq,float64,14581,35419,70.84,134,"32.0, 17.0, 22.0",False
+mths_since_last_delinq,float64,22142,27858,55.72,122,"71.0, 32.0, 17.0",False
+emp_title,str,41691,8309,16.62,20122,"Chef, Postmaster , Administrative",False
+il_util,float64,42373,7627,15.25,179,"69.0, 88.0, 72.0",False
+mths_since_recent_inq,float64,43976,6024,12.05,25,"2.0, 4.0, 14.0",False
+emp_length,str,45470,4530,9.06,11,"10+ years, 10+ years, 6 years",False
+mths_since_rcnt_il,float64,48343,1657,3.31,240,"2.0, 3.0, 14.0",False
+mo_sin_old_il_acct,float64,48343,1657,3.31,401,"140.0, 163.0, 87.0",False
+num_tl_120dpd_2m,float64,48879,1121,2.24,1,"0.0, 0.0, 0.0",False
+next_pymnt_d,str,48961,1039,2.08,3,"Mar-2019, Mar-2019, Mar-2019",False
+bc_util,float64,49332,668,1.34,1082,"5.9, 8.3, 0.0",False
+percent_bc_gt_75,float64,49356,644,1.29,127,"0.0, 0.0, 0.0",False
+bc_open_to_buy,float64,49357,643,1.29,25770,"34360.0, 13761.0, 13800.0",False
+mths_since_recent_bc,float64,49394,606,1.21,327,"1.0, 4.0, 77.0",False
+dti,float64,49913,87,0.17,5150,"18.24, 26.52, 10.51",False
+last_pymnt_d,str,49935,65,0.13,4,"Feb-2019, Feb-2019, Feb-2019",False
+revol_util,float64,49947,53,0.11,1048,"10.3, 24.2, 19.1",False
+all_util,float64,49985,15,0.03,146,"28.0, 57.0, 35.0",False
+avg_cur_bal,float64,49996,4,0.01,24884,"1878.0, 24763.0, 18383.0",False
+pymnt_plan,str,50000,0,0.0,1,"n, n, n",False
+recoveries,float64,50000,0,0.0,1,"0.0, 0.0, 0.0",False
+collection_recovery_fee,float64,50000,0,0.0,1,"0.0, 0.0, 0.0",False
+policy_code,int64,50000,0,0.0,1,"1, 1, 1",False
+acc_now_delinq,int64,50000,0,0.0,1,"0, 0, 0",False
+num_tl_30dpd,int64,50000,0,0.0,1,"0, 0, 0",False
+tax_liens,int64,50000,0,0.0,1,"0, 0, 0",False
+hardship_flag,str,50000,0,0.0,1,"N, N, N",False
+debt_settlement_flag,str,50000,0,0.0,1,"N, N, N",False
+term,str,50000,0,0.0,2," 36 months,  60 months,  36 months",False
+issue_d,str,50000,0,0.0,2,"Dec-2018, Dec-2018, Dec-2018",False
+initial_list_status,str,50000,0,0.0,2,"w, w, w",False
+application_type,str,50000,0,0.0,2,"Individual, Individual, Individual",False
+disbursement_method,str,50000,0,0.0,2,"Cash, Cash, Cash",False
+verification_status,str,50000,0,0.0,3,"Not Verified, Source Verified, Source Verified",False
+home_ownership,str,50000,0,0.0,4,"RENT, MORTGAGE, MORTGAGE",False
+last_credit_pull_d,str,49999,1,0.0,5,"Feb-2019, Feb-2019, Feb-2019",False
+chargeoff_within_12_mths,int64,50000,0,0.0,5,"0, 0, 0",False
+loan_status,str,50000,0,0.0,6,"Current, Current, Current",False
+inq_last_6mths,int64,50000,0,0.0,6,"1, 0, 0",False
+pub_rec,int64,50000,0,0.0,6,"1, 1, 0",False
+pub_rec_bankruptcies,int64,50000,0,0.0,6,"1, 1, 0",False
+grade,str,50000,0,0.0,7,"C, D, D",False
+collections_12_mths_ex_med,int64,50000,0,0.0,7,"0, 0, 0",False
+open_il_12m,int64,50000,0,0.0,7,"1, 2, 0",False
+purpose,str,50000,0,0.0,12,"debt_consolidation, debt_consolidation, debt_consolidation",False
+title,str,50000,0,0.0,12,"Debt consolidation, Debt consolidation, Debt consolidation",False
+open_acc_6m,int64,50000,0,0.0,13,"2, 4, 0",False
+delinq_amnt,int64,50000,0,0.0,14,"0, 0, 0",False
+open_il_24m,int64,50000,0,0.0,17,"2, 3, 2",False
+num_tl_90g_dpd_24m,int64,50000,0,0.0,18,"0, 0, 0",False
+delinq_2yrs,int64,50000,0,0.0,19,"0, 0, 0",False
+inq_fi,int64,50000,0,0.0,20,"1, 2, 1",False
+open_rv_12m,int64,50000,0,0.0,21,"2, 4, 0",False
+mort_acc,int64,50000,0,0.0,21,"0, 3, 2",False
+num_tl_op_past_12m,int64,50000,0,0.0,22,"3, 6, 0",False
+num_accts_ever_120_pd,int64,50000,0,0.0,24,"0, 0, 0",False
+num_actv_bc_tl,int64,50000,0,0.0,24,"2, 2, 0",False
+open_rv_24m,int64,50000,0,0.0,30,"7, 5, 2",False
+sub_grade,str,50000,0,0.0,32,"C1, D2, D1",False
+acc_open_past_24mths,int64,50000,0,0.0,32,"9, 10, 4",False
+inq_last_12m,int64,50000,0,0.0,33,"2, 2, 0",False
+num_rev_tl_bal_gt_0,int64,50000,0,0.0,35,"5, 4, 3",False
+num_actv_rev_tl,int64,50000,0,0.0,36,"5, 4, 3",False
+total_cu_tl,int64,50000,0,0.0,37,"11, 15, 5",False
+num_bc_sats,int64,50000,0,0.0,37,"3, 4, 3",False
+open_act_il,int64,50000,0,0.0,38,"2, 4, 1",False
+int_rate,float64,50000,0,0.0,43,"13.56, 18.94, 17.97",False
+num_bc_tl,int64,50000,0,0.0,48,"3, 9, 3",False
+addr_state,str,50000,0,0.0,50,"NY, LA, MI",False
+num_op_rev_tl,int64,50000,0,0.0,50,"7, 8, 6",False
+open_acc,int64,50000,0,0.0,60,"9, 13, 8",False
+num_sats,int64,50000,0,0.0,60,"9, 13, 8",False
+total_rec_late_fee,float64,50000,0,0.0,61,"0.0, 0.0, 0.0",False
+num_rev_accts,int64,50000,0,0.0,71,"18, 14, 7",False
+num_il_tl,int64,50000,0,0.0,74,"16, 27, 4",False
+total_acc,int64,50000,0,0.0,103,"34, 44, 13",False
+mo_sin_rcnt_tl,int64,50000,0,0.0,129,"1, 3, 14",False
+mo_sin_rcnt_rev_tl_op,int64,50000,0,0.0,202,"1, 4, 15",False
+pct_tl_nvr_dlq,float64,50000,0,0.0,411,"100.0, 95.0, 100.0",False
+earliest_cr_line,str,50000,0,0.0,608,"Apr-2001, Jun-1987, Apr-2011",False
+mo_sin_old_rev_tl_op,int64,50000,0,0.0,639,"212, 378, 92",False
+zip_code,str,50000,0,0.0,865,"109xx, 713xx, 490xx",False
+loan_amnt,int64,50000,0,0.0,1247,"2500, 30000, 5000",False
+funded_amnt,int64,50000,0,0.0,1247,"2500, 30000, 5000",False
+funded_amnt_inv,int64,50000,0,0.0,1293,"2500, 30000, 5000",False
+total_bc_limit,int64,50000,0,0.0,1938,"36500, 15000, 13800",False
+tot_coll_amt,int64,50000,0,0.0,2457,"0, 1208, 0",False
+total_rev_hi_lim,int64,50000,0,0.0,2599,"42000, 50800, 24100",False
+annual_inc,float64,50000,0,0.0,4515,"55000.0, 90000.0, 59280.0",False
+installment,float64,50000,0,0.0,6315,"84.92, 777.23, 180.69",False
+last_pymnt_amnt,float64,50000,0,0.0,9200,"84.92, 777.23, 180.69",False
+total_rec_prncp,float64,50000,0,0.0,12192,"113.98, 612.25, 212.79",False
+out_prncp,float64,50000,0,0.0,12624,"2386.02, 29387.75, 4787.21",False
+out_prncp_inv,float64,50000,0,0.0,13401,"2386.02, 29387.75, 4787.21",False
+max_bal_bc,int64,50000,0,0.0,15634,"2137, 998, 0",False
+total_rec_int,float64,50000,0,0.0,20043,"53.04, 894.86, 141.1",False
+total_pymnt,float64,50000,0,0.0,21743,"167.02, 1507.11, 353.89",False
+total_pymnt_inv,float64,50000,0,0.0,22447,"167.02, 1507.11, 353.89",False
+revol_bal,int64,50000,0,0.0,27053,"4341, 12315, 4599",False
+total_il_high_credit_limit,int64,50000,0,0.0,32540,"18124, 94072, 10000",False
+total_bal_il,int64,50000,0,0.0,34179,"12560, 87153, 7150",False
+total_bal_ex_mort,int64,50000,0,0.0,40268,"16901, 99468, 11749",False
+tot_hi_cred_lim,int64,50000,0,0.0,41174,"60124, 372872, 136927",False
+tot_cur_bal,int64,50000,0,0.0,45057,"16901, 321915, 110299",False
