@@ -1,0 +1,3 @@
+model,is_final,split,loan_count,default_count,roc_auc,average_precision,log_loss,brier_score,threshold,threshold_rule,precision,recall,predicted_positive_rows,mean_probability,observed_default_rate,mean_prediction_minus_default_rate,tn,fp,fn,tp
+baseline,0,holdout_2014,162570,22315,0.6428326341637598,0.20590955999064992,0.38518540595314277,0.11506915873619887,0.5,positive if probability >= 0.5,,0,0,0.13055044118574641,0.13726394783785445,-0.0067135066521080422,140255,0,22315,0
+tuned,1,holdout_2014,162570,22315,0.65949574721111714,0.2158061716611499,0.38281766478026447,0.11452291657075905,0.5,positive if probability >= 0.5,,0,0,0.13130299272572235,0.13726394783785445,-0.0059609551121320992,140255,0,22315,0

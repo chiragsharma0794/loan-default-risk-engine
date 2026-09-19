@@ -1,0 +1,75 @@
+{
+  "stage": 7,
+  "status": "complete",
+  "source_sha256": "23783ef320e4df24ac113d6e5b830edb909912b7783d49b89aacd5690dc9120c",
+  "export_script_sha256": "eda6fe9387928fa2e0e8d67aebb5bd2aac06a7099f3f854705546c86c4956cd4",
+  "inputs": {
+    "outputs\\final_model\\model.txt": "18d976d6d990079fd8473233f80bd3ba3ab37068e23e9738e49acca86ed69ca4",
+    "outputs\\final_model\\holdout_predictions.csv": "037d59e09be4c5aeb6ef7e9a498b314be759f8177bd2e67a4cfba472b8feee25",
+    "outputs\\final_model\\calibration.csv": "c250566852d447598f1fcb764bca1fb638cd9a38264af2cd9b48b8cfe812528d",
+    "outputs\\explainability\\shap_importance.csv": "02b4b49e058697f20835dd5d811a9ee8b9719b384b2ec75423c848e8d25275ae",
+    "outputs\\final_model\\metrics.json": "250249a75ee4e0c1571f98f3f682c0624b7999c79f5a804eb3b97c71023d42f1",
+    "outputs\\explainability\\explanation_metadata.json": "3af9567e690c1028a6aa2adeffc1a1d2f15524450a226fac4a97d4744d71c5f3"
+  },
+  "population": {
+    "rows": 162570,
+    "positive_rows": 22315,
+    "default_rate": 0.13726394783785445,
+    "source_row_unique": true,
+    "development_overlap_rows": 0
+  },
+  "model": "tuned",
+  "threshold": 0.5,
+  "risk_band_method": "Fixed 0.10, 0.15, 0.20 cut points; lower inclusive, upper exclusive except 1.0; reporting only",
+  "shap_sample_rows": 10000,
+  "verification": "Raw hash, one-to-one join, outcomes/dates/term, frozen totals/mean, all CSV round trips, exported band totals, unchanged input hashes passed",
+  "missing_numeric_counts": {
+    "loan_amount": 0,
+    "annual_income": 0,
+    "interest_rate_pct": 0
+  },
+  "unknown_category_counts": {
+    "grade": 0,
+    "sub_grade": 0,
+    "purpose": 0,
+    "home_ownership": 0,
+    "state": 0
+  },
+  "tables": {
+    "scored_loans": {
+      "rows": 162570,
+      "bytes": 19250990,
+      "sha256": "d02ade1ae87ea1217183e4c36f3dd0443d6ead7873128eb44df473b658c62cbb"
+    },
+    "risk_bands": {
+      "rows": 4,
+      "bytes": 278,
+      "sha256": "d9e01afa24c1dc5a596b0d70e2bb962f0809710943e229385629c675d2858949"
+    },
+    "risk_band_summary": {
+      "rows": 4,
+      "bytes": 364,
+      "sha256": "1229293263590e025da44f717f634b92c1bc0a33918cbba90e5aad7a69a12954"
+    },
+    "model_performance": {
+      "rows": 2,
+      "bytes": 717,
+      "sha256": "cb60b4838aa2541de550a373e7601a3e8f755899c0730a7a87a8687f6eb8d90d"
+    },
+    "feature_importance": {
+      "rows": 72,
+      "bytes": 1874,
+      "sha256": "10e3b312ef30fb0224c1fb0b64efa1ed2089d00059dc504f668ccb52822ca5ad"
+    },
+    "shap_importance": {
+      "rows": 72,
+      "bytes": 2511,
+      "sha256": "02b4b49e058697f20835dd5d811a9ee8b9719b384b2ec75423c848e8d25275ae"
+    },
+    "calibration": {
+      "rows": 20,
+      "bytes": 1411,
+      "sha256": "c250566852d447598f1fcb764bca1fb638cd9a38264af2cd9b48b8cfe812528d"
+    }
+  }
+}
