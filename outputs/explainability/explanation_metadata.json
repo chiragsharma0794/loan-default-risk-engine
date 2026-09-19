@@ -1,0 +1,222 @@
+{
+  "stage": 6,
+  "model_path": "outputs/final_model/model.txt",
+  "model_sha256": "18d976d6d990079fd8473233f80bd3ba3ab37068e23e9738e49acca86ed69ca4",
+  "model_iterations": 57,
+  "feature_count": 72,
+  "method": "TreeSHAP; tree_path_dependent; model_output=raw; no background refit",
+  "units": "Default log-odds; positive SHAP increases modeled default risk, not a causal effect",
+  "base_log_odds": -1.996452091557009,
+  "sampling": {
+    "method": "simple random sample without replacement from final holdout predictions",
+    "seed": 42,
+    "global_rows": 10000,
+    "explained_rows_including_local_examples": 10004,
+    "population_rows": 162570,
+    "sample_positive_rows": 1391,
+    "sample_default_rate": 0.1391,
+    "population_default_rate": 0.13726394783785445,
+    "issue_month_counts": {
+      "2014-01": 699,
+      "2014-02": 661,
+      "2014-03": 695,
+      "2014-04": 851,
+      "2014-05": 777,
+      "2014-06": 720,
+      "2014-07": 1222,
+      "2014-08": 800,
+      "2014-09": 481,
+      "2014-10": 1626,
+      "2014-11": 1014,
+      "2014-12": 454
+    }
+  },
+  "local_selection": "Nearest score to full-cohort P10/P90 within each actual class; source-row tie-break; not added to global importance unless randomly sampled",
+  "local_examples": [
+    {
+      "case": "lower_score_nondefault",
+      "source_row": 2091289,
+      "actual_default": 0,
+      "predicted_class_at_0_5": 0,
+      "classification": "TN",
+      "predicted_probability": 0.06937677397368565,
+      "target_score_quantile": 0.1,
+      "target_probability": 0.06937656677840208,
+      "base_log_odds": -1.996452091557009,
+      "reconstructed_probability": 0.06937677397368548
+    },
+    {
+      "case": "higher_score_nondefault",
+      "source_row": 1959698,
+      "actual_default": 0,
+      "predicted_class_at_0_5": 0,
+      "classification": "TN",
+      "predicted_probability": 0.19405048865547117,
+      "target_score_quantile": 0.9,
+      "target_probability": 0.19405040895029915,
+      "base_log_odds": -1.996452091557009,
+      "reconstructed_probability": 0.19405048865547095
+    },
+    {
+      "case": "lower_score_default",
+      "source_row": 1919938,
+      "actual_default": 1,
+      "predicted_class_at_0_5": 0,
+      "classification": "FN",
+      "predicted_probability": 0.06937760384723513,
+      "target_score_quantile": 0.1,
+      "target_probability": 0.06937656677840208,
+      "base_log_odds": -1.996452091557009,
+      "reconstructed_probability": 0.06937760384723499
+    },
+    {
+      "case": "higher_score_default",
+      "source_row": 1944706,
+      "actual_default": 1,
+      "predicted_class_at_0_5": 0,
+      "classification": "FN",
+      "predicted_probability": 0.19405040009416893,
+      "target_score_quantile": 0.9,
+      "target_probability": 0.19405040895029915,
+      "base_log_odds": -1.996452091557009,
+      "reconstructed_probability": 0.19405040009416877
+    }
+  ],
+  "unavailable_cases_at_0_5": [
+    "true_positive",
+    "false_positive"
+  ],
+  "top_features": [
+    {
+      "importance_rank": 1,
+      "feature": "int_rate",
+      "mean_abs_shap": 0.22022096824049991,
+      "importance_share": 0.35244130470689533
+    },
+    {
+      "importance_rank": 2,
+      "feature": "annual_inc",
+      "mean_abs_shap": 0.09170504778723447,
+      "importance_share": 0.1467646198660076
+    },
+    {
+      "importance_rank": 3,
+      "feature": "sub_grade",
+      "mean_abs_shap": 0.07448684040027483,
+      "importance_share": 0.11920862678933224
+    },
+    {
+      "importance_rank": 4,
+      "feature": "zip_code",
+      "mean_abs_shap": 0.06413013989264196,
+      "importance_share": 0.1026337789511262
+    },
+    {
+      "importance_rank": 5,
+      "feature": "acc_open_past_24mths",
+      "mean_abs_shap": 0.04074410454727751,
+      "importance_share": 0.06520680333252556
+    },
+    {
+      "importance_rank": 6,
+      "feature": "earliest_cr_line",
+      "mean_abs_shap": 0.03860234562195194,
+      "importance_share": 0.06177913558571486
+    },
+    {
+      "importance_rank": 7,
+      "feature": "log_annual_inc",
+      "mean_abs_shap": 0.02677989333809641,
+      "importance_share": 0.04285850082033391
+    },
+    {
+      "importance_rank": 8,
+      "feature": "purpose",
+      "mean_abs_shap": 0.022385838288026375,
+      "importance_share": 0.03582626175984012
+    },
+    {
+      "importance_rank": 9,
+      "feature": "loan_to_inc_ratio",
+      "mean_abs_shap": 0.021638214828192164,
+      "importance_share": 0.034629766304758405
+    },
+    {
+      "importance_rank": 10,
+      "feature": "inq_last_6mths",
+      "mean_abs_shap": 0.014229667645482507,
+      "importance_share": 0.022773138591609555
+    }
+  ],
+  "numeric_dependence_features": [
+    "int_rate",
+    "annual_inc",
+    "acc_open_past_24mths"
+  ],
+  "categorical_effect_features": [
+    "sub_grade",
+    "zip_code",
+    "earliest_cr_line"
+  ],
+  "verification": {
+    "shap_additivity_max_abs_error": 3.9968028886505635e-15,
+    "reconstructed_probability_max_abs_error": 4.163336342344337e-16,
+    "saved_prediction_max_abs_error": 0.0,
+    "native_contribution_max_abs_error": 0.0,
+    "final_artifacts_unchanged": true,
+    "known_excluded_fields_absent": true
+  },
+  "source_sha256": "23783ef320e4df24ac113d6e5b830edb909912b7783d49b89aacd5690dc9120c",
+  "preprocessing_contract": {
+    "path": "outputs/validation/data_validation.json",
+    "sha256": "092daeb9f0f0a1e675b5d5e923848efcc92d5ac437c9b0ba385cb085cb494213"
+  },
+  "frozen_final_artifact_sha256": {
+    "outputs\\final_model\\calibration.csv": "c250566852d447598f1fcb764bca1fb638cd9a38264af2cd9b48b8cfe812528d",
+    "outputs\\final_model\\holdout_predictions.csv": "037d59e09be4c5aeb6ef7e9a498b314be759f8177bd2e67a4cfba472b8feee25",
+    "outputs\\final_model\\metrics.json": "250249a75ee4e0c1571f98f3f682c0624b7999c79f5a804eb3b97c71023d42f1",
+    "outputs\\final_model\\model.txt": "18d976d6d990079fd8473233f80bd3ba3ab37068e23e9738e49acca86ed69ca4"
+  },
+  "code_sha256": "03187e0fbfe1a0ab92948cf9d60a8e39657a384c0ab637b3b2a49c9c96be36da",
+  "packages": {
+    "shap": "0.52.0",
+    "matplotlib": "3.11.2",
+    "lightgbm": "4.7.0",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "numba": "0.67.0",
+    "llvmlite": "0.49.0"
+  },
+  "runtime_seconds": 30.472604899900034,
+  "limitations": [
+    "Resolved 36-month historical cohort only; not a prospective backtest.",
+    "Customer overlap cannot be verified because IDs are absent.",
+    "Bureau snapshot timing remains an assumption.",
+    "Holdout is now consumed; do not retune or reselect using this set.",
+    "Row-bootstrap uncertainty does not account for unidentified repeat borrowers.",
+    "0.5 is a descriptive threshold, not a cost-optimized lending decision.",
+    "Global explanations describe a 10,000-row 2014 cohort sample, not the entire portfolio.",
+    "Correlated geography, credit-vintage and pricing variables can share attribution; SHAP does not establish causation or absence of leakage.",
+    "Path-dependent reference uses training tree path counts; no probability-point interpretation of raw SHAP values."
+  ],
+  "artifact_sha256": {
+    "categorical_effects.csv": "1e55e2dea8743e4ffe1211798c392f345c40bf81e121692bd3094fec88d3c01b",
+    "categorical_sub_grade.png": "0c3468194f8b42f01136a25bf37c8b9405439d8cbd582f219a4e374e13ef1f7a",
+    "dependence_acc_open_past_24mths.png": "f288c10118b78adb032d026bf7138dedd97a36b11a02747f11ca59c04661fbd2",
+    "dependence_annual_inc.png": "208f78d6fce67ff28389aa8297fdd12896c8c84dce775033c94acba248903abc",
+    "dependence_int_rate.png": "d7e2be4386683c741a1aaa1ad0fefa867b07b533d14e186e300ef09393321b9f",
+    "local_contributions.csv": "15145f327a67e37a01636624351352f9d3f839a81c4661072e89cbade7b70d11",
+    "local_examples.csv": "e708a100817fcdbabdd2494355261baaa6e778839daac89d21e008250c62ede8",
+    "local_higher_score_default.png": "c0ee7980a84061ba2b07579cd519e27cae7a6bd9e9d79ae4b334f50a54f76cfe",
+    "local_higher_score_nondefault.png": "71f39449b1097e9dcec4702912f41d382af05c391de1f83cfa29e33a48504aca",
+    "local_lower_score_default.png": "416048ddf0c2e187af7280b9ab0b5bcea20cf50b61fd02a429c542921927fa8a",
+    "local_lower_score_nondefault.png": "2c50b709eae9d8adc94ee13b0287fd31d8648fa17272fc03e61a01c260946118",
+    "numeric_effects.csv": "fbb9317ba6c7862b611d9c36905cd756661c94ba2132f7ad622fcf4bc2800e44",
+    "shap_importance.csv": "02b4b49e058697f20835dd5d811a9ee8b9719b384b2ec75423c848e8d25275ae",
+    "shap_importance.png": "b2196b2a1963e9b9f16d58a9a3af9e0890395d503f989992de0073f1162903dc",
+    "shap_summary.png": "40747edc99fd8e70325f4f71ec38f2722b9a17b7181d5fa5c9d9489920506344",
+    "shap_values.npz": "771554602620574592d231179262d7467594d01360209ab7411100deadebe256"
+  },
+  "initial_execution_code_sha256": "d1f48207f505e305928ca4c04f239c55b345fa982d46ba1d4c24b5d4a48e5af8",
+  "plot_review": "Reviewed all ten plots; restricted the nonnegative income axis and clarified categorical bar ordering. Only these two figures were redrawn from saved values; SHAP, model and sample unchanged."
+}
