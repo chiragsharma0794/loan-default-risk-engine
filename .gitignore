@@ -1,4 +1,5 @@
 # Ignore data files
+data/loan.csv
 data/raw/
 data/interim/
 data/processed/
@@ -8,3 +9,30 @@ venv/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+.venv/
+
+# Local row-level data and predictions; retain aggregate reporting evidence
+outputs/sample/
+outputs/basic_model_output.csv
+outputs/baseline/predictions.csv
+outputs/tuning/validation_predictions.csv
+outputs/final_model/holdout_predictions.csv
+outputs/powerbi/scored_loans.csv
+outputs/explainability/shap_values.npz
+outputs/explainability/local_examples.csv
+outputs/explainability/local_contributions.csv
+
+# Credentials and local tooling
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+secrets*.json
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
