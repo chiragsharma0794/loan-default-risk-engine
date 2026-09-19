@@ -1,0 +1,228 @@
+{
+  "stage": 5,
+  "status": "complete_holdout_consumed",
+  "selection_rule": "Select tuned only if holdout AUC is higher and paired stratified-bootstrap 95% percentile interval for tuned-minus-baseline AUC has lower bound > 0; otherwise retain baseline.",
+  "threshold": 0.5,
+  "bootstrap_replicates": 500,
+  "frozen_artifact_sha256": {
+    "outputs\\baseline\\feature_importance.csv": "6c16b9d22637c8f66807022f4cf9ea108386bf3a9c8f9186031e4aa15599f8fe",
+    "outputs\\baseline\\metrics.json": "8f47afa91ab5f132edda8135e3c9f33f8c3848f1b0fc905a257a47fc94dc251c",
+    "outputs\\baseline\\model.txt": "ebcfa083b640660af1952ed057bc46fc5f8c531d9a3509a83dca1e353b2d810d",
+    "outputs\\baseline\\predictions.csv": "d6b87d3687679089c1f3a5a80a7980639c6057c8999587be2cf6dcae6b701571",
+    "outputs\\tuning\\best_params.json": "c134a44a123b5e8006ad8b0506c636322c0f4bdcfc625eea94925c1a2975c902",
+    "outputs\\tuning\\candidate_model.txt": "3dfd5270268c5e3aba072941fddff3657ff17fc2ff3363276545fa05ee529094",
+    "outputs\\tuning\\tuning_trials.csv": "8661763dd61a6e965222c798b47cec6fa93b77641cdc17280515a4c26b46ac4b",
+    "outputs\\tuning\\validation_predictions.csv": "3135b6a555e305e72719ddf22bf8f9fae87e83f0300c7309ac9921fe6734ef8b"
+  },
+  "preprocessing_contract": {
+    "path": "outputs/validation/data_validation.json",
+    "sha256": "092daeb9f0f0a1e675b5d5e923848efcc92d5ac437c9b0ba385cb085cb494213"
+  },
+  "source_sha256": "23783ef320e4df24ac113d6e5b830edb909912b7783d49b89aacd5690dc9120c",
+  "policy": {
+    "version": 1,
+    "term": "36 months",
+    "target_map": {
+      "Fully Paid": 0,
+      "Charged Off": 1
+    },
+    "train": [
+      "2007-01-01",
+      "2013-01-01"
+    ],
+    "validation": [
+      "2013-01-01",
+      "2014-01-01"
+    ],
+    "holdout": [
+      "2014-01-01",
+      "2015-01-01"
+    ],
+    "boundary_rule": "inclusive start, exclusive end",
+    "sampling": "all eligible rows; no class balancing",
+    "seed": 42,
+    "primary_metric": "roc_auc",
+    "secondary_metrics": [
+      "average_precision",
+      "log_loss",
+      "brier_score"
+    ]
+  },
+  "baseline_parameters": {
+    "boosting_type": "gbdt",
+    "class_weight": null,
+    "colsample_bytree": 1.0,
+    "importance_type": "split",
+    "learning_rate": 0.05,
+    "max_depth": 7,
+    "min_child_samples": 20,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "n_estimators": 500,
+    "n_jobs": -1,
+    "num_leaves": 31,
+    "objective": null,
+    "random_state": 42,
+    "reg_alpha": 0.0,
+    "reg_lambda": 0.0,
+    "subsample": 1.0,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 0,
+    "metric": "auc"
+  },
+  "baseline_iterations": 31,
+  "tuned_fixed_parameters": {
+    "boosting_type": "gbdt",
+    "class_weight": null,
+    "colsample_bytree": 0.85,
+    "importance_type": "split",
+    "learning_rate": 0.03719515393564381,
+    "max_depth": 3,
+    "min_child_samples": 50,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "n_estimators": 57,
+    "n_jobs": -1,
+    "num_leaves": 8,
+    "objective": null,
+    "random_state": 42,
+    "reg_alpha": 0.0011828328138181756,
+    "reg_lambda": 0.06745781561587151,
+    "subsample": 1.0,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 0,
+    "metric": "auc"
+  },
+  "tuned_iterations": 57,
+  "training_rows": 72566,
+  "feature_count": 72,
+  "pre_holdout_refit_validation_max_abs_difference": 0.0,
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "lightgbm": "4.7.0",
+      "scikit-learn": "1.9.1",
+      "pandas": "3.0.1",
+      "numpy": "2.3.5",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "threadpoolctl": "3.7.0",
+      "narwhals": "2.26.0",
+      "cloudpickle": "3.1.2"
+    }
+  },
+  "evaluation_code_sha256": "73078bb023f6502890111b51596879b27bc9f6cd62ffcc71c9c529ded95a9664",
+  "selected_model": "tuned",
+  "selected_parameters": {
+    "boosting_type": "gbdt",
+    "class_weight": null,
+    "colsample_bytree": 0.85,
+    "importance_type": "split",
+    "learning_rate": 0.03719515393564381,
+    "max_depth": 3,
+    "min_child_samples": 50,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "n_estimators": 57,
+    "n_jobs": -1,
+    "num_leaves": 8,
+    "objective": null,
+    "random_state": 42,
+    "reg_alpha": 0.0011828328138181756,
+    "reg_lambda": 0.06745781561587151,
+    "subsample": 1.0,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 0,
+    "metric": "auc"
+  },
+  "holdout": {
+    "rows": 162570,
+    "positive_rows": 22315,
+    "default_rate": 0.13726394783785445,
+    "source_row_unique": true,
+    "development_overlap_rows": 0
+  },
+  "holdout_metrics": {
+    "baseline": {
+      "roc_auc": 0.6428326341637598,
+      "average_precision": 0.20590955999064992,
+      "log_loss": 0.38518540595314277,
+      "brier_score": 0.11506915873619887,
+      "threshold": 0.5,
+      "threshold_rule": "positive if probability >= 0.5",
+      "precision": null,
+      "recall": 0.0,
+      "predicted_positive_rows": 0,
+      "confusion_matrix": {
+        "tn": 140255,
+        "fp": 0,
+        "fn": 22315,
+        "tp": 0
+      },
+      "mean_probability": 0.1305504411857464,
+      "observed_default_rate": 0.13726394783785445,
+      "mean_prediction_minus_default_rate": -0.006713506652108042
+    },
+    "tuned": {
+      "roc_auc": 0.6594957472111171,
+      "average_precision": 0.2158061716611499,
+      "log_loss": 0.38281766478026447,
+      "brier_score": 0.11452291657075905,
+      "threshold": 0.5,
+      "threshold_rule": "positive if probability >= 0.5",
+      "precision": null,
+      "recall": 0.0,
+      "predicted_positive_rows": 0,
+      "confusion_matrix": {
+        "tn": 140255,
+        "fp": 0,
+        "fn": 22315,
+        "tp": 0
+      },
+      "mean_probability": 0.13130299272572235,
+      "observed_default_rate": 0.13726394783785445,
+      "mean_prediction_minus_default_rate": -0.005960955112132099
+    }
+  },
+  "tuned_minus_baseline": {
+    "roc_auc": 0.016663113047357347,
+    "average_precision": 0.009896611670499988,
+    "log_loss": -0.0023677411728783015,
+    "brier_score": -0.000546242165439817
+  },
+  "paired_auc_difference_interval": {
+    "method": "paired class-stratified percentile bootstrap of loan rows",
+    "replicates": 500,
+    "seed": 42,
+    "confidence_level": 0.95,
+    "lower": 0.015223948536392742,
+    "upper": 0.018079599018346368,
+    "assumption": "Rows independent; unavailable borrower IDs prevent borrower-cluster uncertainty estimates."
+  },
+  "generalization_conclusion": "Tuned AUC improvement supported on this holdout under the row-independence bootstrap assumption.",
+  "calibration_method": "10 fixed equal-width probability bins; [left,right) except last bin includes 1.0",
+  "verification": {
+    "frozen_inputs_unchanged": true,
+    "saved_model_validation_predictions_match": true,
+    "candidate_refit_matches_frozen_validation_predictions": true
+  },
+  "runtime_seconds": {
+    "fixed_candidate_refit": 0.37109190016053617,
+    "total_through_checks": 64.09552410012111
+  },
+  "limitations": [
+    "Resolved 36-month historical cohort only; not a prospective backtest.",
+    "Customer overlap cannot be verified because IDs are absent.",
+    "Bureau snapshot timing remains an assumption.",
+    "Holdout is now consumed; do not retune or reselect using this set.",
+    "Row-bootstrap uncertainty does not account for unidentified repeat borrowers.",
+    "0.5 is a descriptive threshold, not a cost-optimized lending decision."
+  ],
+  "artifact_sha256": {
+    "model.txt": "18d976d6d990079fd8473233f80bd3ba3ab37068e23e9738e49acca86ed69ca4",
+    "holdout_predictions.csv": "037d59e09be4c5aeb6ef7e9a498b314be759f8177bd2e67a4cfba472b8feee25",
+    "calibration.csv": "c250566852d447598f1fcb764bca1fb638cd9a38264af2cd9b48b8cfe812528d"
+  },
+  "comparison_sha256": "6520daba0a2938970913b73c40d4f835c1956fe077a184cc16f8c485f699dfbb"
+}

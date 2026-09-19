@@ -1,0 +1,372 @@
+{
+  "stage": 4,
+  "status": "candidate_frozen_pending_holdout",
+  "method": "24 pre-drawn seeded random-search trials; no adaptive extension",
+  "selection": "maximum validation ROC-AUC; ties retain earlier trial; secondary metrics reported only",
+  "search_seed": 42,
+  "model_seed": 42,
+  "search_space": {
+    "learning_rate": {
+      "distribution": "log-uniform",
+      "low": 0.015,
+      "high": 0.12
+    },
+    "num_leaves": [
+      7,
+      15,
+      31,
+      63
+    ],
+    "max_depth": [
+      3,
+      5,
+      7,
+      9,
+      -1
+    ],
+    "num_leaves_constraint": "cap drawn num_leaves at 2**max_depth when max_depth > 0",
+    "min_child_samples": [
+      20,
+      50,
+      100,
+      200,
+      400
+    ],
+    "colsample_bytree": [
+      0.7,
+      0.85,
+      1.0
+    ],
+    "subsample": [
+      0.7,
+      0.85,
+      1.0
+    ],
+    "subsample_freq": "1 if subsample < 1, else 0",
+    "reg_alpha": {
+      "distribution": "log-uniform",
+      "low": 0.0001,
+      "high": 10.0
+    },
+    "reg_lambda": {
+      "distribution": "log-uniform",
+      "low": 0.001,
+      "high": 30.0
+    },
+    "min_split_gain": [
+      0.0,
+      0.01,
+      0.05,
+      0.1
+    ],
+    "n_estimators": 1500
+  },
+  "trials_requested": 24,
+  "trials_completed": 24,
+  "best_trial": 12,
+  "best_iteration": 57,
+  "parameters": {
+    "boosting_type": "gbdt",
+    "class_weight": null,
+    "colsample_bytree": 0.85,
+    "importance_type": "split",
+    "learning_rate": 0.03719515393564381,
+    "max_depth": 3,
+    "min_child_samples": 50,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "n_estimators": 1500,
+    "n_jobs": -1,
+    "num_leaves": 8,
+    "objective": null,
+    "random_state": 42,
+    "reg_alpha": 0.0011828328138181756,
+    "reg_lambda": 0.06745781561587151,
+    "subsample": 1.0,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 0,
+    "metric": "auc"
+  },
+  "booster_parameters": {
+    "boosting_type": "gbdt",
+    "colsample_bytree": 0.85,
+    "learning_rate": 0.03719515393564381,
+    "max_depth": 3,
+    "min_child_samples": 50,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "num_leaves": 8,
+    "random_state": 42,
+    "reg_alpha": 0.0011828328138181756,
+    "reg_lambda": 0.06745781561587151,
+    "subsample": 1.0,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 0,
+    "metric": [
+      "auc"
+    ],
+    "objective": "binary",
+    "num_threads": 20,
+    "num_iterations": 1500,
+    "categorical_column": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      15,
+      23,
+      26
+    ]
+  },
+  "fixed_iteration_parameters_for_stage5": {
+    "boosting_type": "gbdt",
+    "class_weight": null,
+    "colsample_bytree": 0.85,
+    "importance_type": "split",
+    "learning_rate": 0.03719515393564381,
+    "max_depth": 3,
+    "min_child_samples": 50,
+    "min_child_weight": 0.001,
+    "min_split_gain": 0.0,
+    "n_estimators": 57,
+    "n_jobs": -1,
+    "num_leaves": 8,
+    "objective": null,
+    "random_state": 42,
+    "reg_alpha": 0.0011828328138181756,
+    "reg_lambda": 0.06745781561587151,
+    "subsample": 1.0,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 0,
+    "metric": "auc"
+  },
+  "early_stopping": {
+    "rounds": 50,
+    "metric": "auc",
+    "first_metric_only": true
+  },
+  "best_trial_evaluation_history": {
+    "validation": {
+      "auc": [
+        0.6351293040593204,
+        0.6452825572774505,
+        0.6464433041855371,
+        0.6456670853383367,
+        0.6468375064219531,
+        0.6479669248940212,
+        0.6502500858334181,
+        0.6512078939011376,
+        0.6509181026563937,
+        0.6511403513089443,
+        0.6512238962519064,
+        0.6516668180510429,
+        0.651683202579001,
+        0.6515643808003899,
+        0.6521256687935648,
+        0.6522866264102045,
+        0.653028268085878,
+        0.6535775833348327,
+        0.6541707048985826,
+        0.6547399704391403,
+        0.6546838124145083,
+        0.6550971492029805,
+        0.6556711320855091,
+        0.6555234657932127,
+        0.6561543293043031,
+        0.6558640994504437,
+        0.655461495739006,
+        0.6557389504141861,
+        0.6562071436226246,
+        0.6560771409819408,
+        0.6560828195018371,
+        0.6562456347840709,
+        0.6563416250312835,
+        0.6563195702417597,
+        0.6566407114859409,
+        0.6563364135658636,
+        0.6564833618421918,
+        0.6569720100179937,
+        0.6569337436666587,
+        0.6567551421266408,
+        0.6569898746223181,
+        0.6570148689187479,
+        0.6573057681561839,
+        0.6576725999909313,
+        0.6577274715511705,
+        0.6581455692672473,
+        0.6583147081367584,
+        0.6581722835904277,
+        0.6586048581600884,
+        0.658928923770903,
+        0.6589555371589312,
+        0.6590574298185592,
+        0.6590267735188943,
+        0.6591489472621465,
+        0.65943871831986,
+        0.6595449521086194,
+        0.6596337085170013,
+        0.6594870263424377,
+        0.6594847718181773,
+        0.6593337682427166,
+        0.6592764324883784,
+        0.659155444733163,
+        0.6591765158637503,
+        0.6590241739799323,
+        0.6591729482649207,
+        0.6590300029849644,
+        0.6588414038181338,
+        0.6587496340366663,
+        0.6586189858698055,
+        0.6583775237522619,
+        0.6585002622735695,
+        0.6584706391828249,
+        0.6586083321645043,
+        0.6587643508406346,
+        0.6587849728097951,
+        0.6586832911963942,
+        0.6584437367532248,
+        0.6585248537469833,
+        0.6585658843450967,
+        0.65845157712056,
+        0.6583442027645823,
+        0.6583897066251169,
+        0.6583026569383973,
+        0.658374770516591,
+        0.65834660639759,
+        0.6583894818150055,
+        0.6581630062735638,
+        0.6582730957851323,
+        0.6582547508212433,
+        0.6584151730227807,
+        0.6582737642511167,
+        0.6581400485732251,
+        0.658004669759305,
+        0.6579259531869812,
+        0.6577799780172782,
+        0.6576281008939558,
+        0.6576325929670191,
+        0.6573453370297768,
+        0.6573421571136904,
+        0.6575911067843331,
+        0.6575024765448912,
+        0.657670087623237,
+        0.6575980043255888,
+        0.6576558369561528,
+        0.657604116866639,
+        0.6574479504581497,
+        0.6573334184235017
+      ]
+    }
+  },
+  "best_validation_metrics": {
+    "roc_auc": 0.6596337085170013,
+    "average_precision": 0.19656788577315806,
+    "log_loss": 0.35860872620344814,
+    "brier_score": 0.10483188877736119
+  },
+  "baseline_validation_metrics": {
+    "roc_auc": 0.6426464329932009,
+    "average_precision": 0.18717428225413663,
+    "log_loss": 0.3603006160067117,
+    "brier_score": 0.10531420551436682
+  },
+  "validation_differences_tuned_minus_baseline": {
+    "roc_auc": 0.016987275523800416,
+    "average_precision": 0.009393603519021437,
+    "log_loss": -0.0016918898032635687,
+    "brier_score": -0.0004823167370056336
+  },
+  "improved_validation_auc": true,
+  "feature_count": 72,
+  "splits": {
+    "train": {
+      "rows": 72566,
+      "issue_month_range": [
+        "2007-06",
+        "2012-12"
+      ],
+      "positive_rows": 9130,
+      "positive_rate": 0.12581649808450238
+    },
+    "validation": {
+      "rows": 100422,
+      "issue_month_range": [
+        "2013-01",
+        "2013-12"
+      ],
+      "positive_rows": 12378,
+      "positive_rate": 0.12325984346059628
+    },
+    "holdout": {
+      "rows": 162570,
+      "issue_month_range": [
+        "2014-01",
+        "2014-12"
+      ]
+    }
+  },
+  "holdout_evaluated": false,
+  "preprocessing_contract": {
+    "path": "outputs/validation/data_validation.json",
+    "sha256": "092daeb9f0f0a1e675b5d5e923848efcc92d5ac437c9b0ba385cb085cb494213"
+  },
+  "raw_source_sha256": "23783ef320e4df24ac113d6e5b830edb909912b7783d49b89aacd5690dc9120c",
+  "baseline_artifact_sha256": {
+    "feature_importance.csv": "6c16b9d22637c8f66807022f4cf9ea108386bf3a9c8f9186031e4aa15599f8fe",
+    "metrics.json": "8f47afa91ab5f132edda8135e3c9f33f8c3848f1b0fc905a257a47fc94dc251c",
+    "model.txt": "ebcfa083b640660af1952ed057bc46fc5f8c531d9a3509a83dca1e353b2d810d",
+    "predictions.csv": "d6b87d3687679089c1f3a5a80a7980639c6057c8999587be2cf6dcae6b701571"
+  },
+  "unchanged_baseline_code_sha256": {
+    "src/lgbm_model.py": "4b5323f70fe99a1ec4ff6eebd6bcfa5dbb76fe1fa42f59b2e7a37981a1f09dd0",
+    "src/stratified_sampling.py": "91684a1971735e17ed91cbcb63dd50ef9cf2963963e37689b5bf7f41d50fae75",
+    "src/feature_screening.py": "dd639666fc13e336b2e5c5203bfe34945021782ef47f129d4ec13290ef7187ac",
+    "src/feature_engineering.py": "71270b8ec070f51a0d4be3ce6fa6a02b93c81467f9b7cdb29a02dcdfc8edb1e2"
+  },
+  "tuning_code_sha256": "0b6f4572bbbb3958e0eaa153e92ad073db6d2dc483f6480633453f2b0ab69fc0",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "lightgbm": "4.7.0",
+      "scikit-learn": "1.9.1",
+      "pandas": "3.0.1",
+      "numpy": "2.3.5",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "threadpoolctl": "3.7.0",
+      "narwhals": "2.26.0",
+      "cloudpickle": "3.1.2"
+    }
+  },
+  "runtime_seconds": {
+    "loading_and_baseline_verification": 25.364736899966374,
+    "trials_total": 34.6500000001397,
+    "total_through_artifact_checks": 60.40076579991728
+  },
+  "verification": {
+    "baseline_artifacts_unchanged": true,
+    "development_rows_match_baseline": true,
+    "model_reload_max_abs_difference": 0.0,
+    "disk_model_reload_max_abs_difference": 0.0
+  },
+  "limitations": [
+    "Resolved 36-month historical cohort only; not a prospective backtest.",
+    "Customer overlap cannot be verified because IDs are absent.",
+    "Bureau snapshot timing remains an assumption.",
+    "Validation was used for early stopping; final holdout performance is unknown.",
+    "Selecting from 24 trials adds validation selection optimism; improvement on holdout is unknown."
+  ],
+  "artifact_sha256": {
+    "tuning_trials.csv": "8661763dd61a6e965222c798b47cec6fa93b77641cdc17280515a4c26b46ac4b",
+    "candidate_model.txt": "3dfd5270268c5e3aba072941fddff3657ff17fc2ff3363276545fa05ee529094",
+    "validation_predictions.csv": "3135b6a555e305e72719ddf22bf8f9fae87e83f0300c7309ac9921fe6734ef8b"
+  },
+  "search_execution_code_sha256": "7b6bd5239c63633890b9530e5f26496c09fb7d361c45ae3449986ecab809fa5a",
+  "serialization_fix": "Re-saved the same selected model with native LightGBM serialization to preserve byte offsets on Windows; no retraining, parameter changes, or extra trials."
+}
