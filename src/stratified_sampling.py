@@ -1,65 +1,89 @@
+"""Frozen chronological cohorts, replacing physical-chunk class balancing."""
+import hashlib
+import json
+from pathlib import Path
+
 import pandas as pd
-import os
 
-# Define paths relative to the script location
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-
-RAW_DATA_PATH = os.path.join(PROJECT_ROOT, "data", "raw", "loan.csv")
-SAMPLED_DATA_PATH = os.path.join(PROJECT_ROOT, "data", "interim", "loan_data_stratified_sample.csv")
-
-TARGET_MAP = {
-    "Fully Paid": 0,
-    "Current": 0,
-    "Charged Off": 1,
-    "Default": 1
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+RAW_DATA_PATH = PROJECT_ROOT / "data" / "loan.csv"
+VALIDATION_PATH = PROJECT_ROOT / "outputs" / "validation" / "data_validation.json"
+SEED = 42
+TARGET_MAP = {"Fully Paid": 0, "Charged Off": 1}
+POLICY = {
+    "version": 1,
+    "term": "36 months",
+    "target_map": TARGET_MAP,
+    "train": ["2007-01-01", "2013-01-01"],
+    "validation": ["2013-01-01", "2014-01-01"],
+    "holdout": ["2014-01-01", "2015-01-01"],
+    "boundary_rule": "inclusive start, exclusive end",
+    "sampling": "all eligible rows; no class balancing",
+    "seed": SEED,
+    "primary_metric": "roc_auc",
+    "secondary_metrics": ["average_precision", "log_loss", "brier_score"],
 }
 
-def create_time_balanced_sample(file_path, output_path, chunksize=100000):
-    print("Starting time-balanced chunked data scan...")
-    
-    balanced_chunks = []
-    
-    # Process chunk by chunk to avoid memory issues
-    for i, chunk in enumerate(pd.read_csv(file_path, chunksize=chunksize, low_memory=False)):
-        print(f"Processing chunk {i+1}...")
-        
-        if 'loan_status' not in chunk.columns:
-            continue
-            
-        chunk = chunk.copy()
-        chunk['target'] = chunk['loan_status'].map(TARGET_MAP)
-        valid_chunk = chunk.dropna(subset=['target'])
-        
-        defaults = valid_chunk[valid_chunk['target'] == 1]
-        non_defaults = valid_chunk[valid_chunk['target'] == 0]
-        
-        # TIME-BALANCING: Take an equal number of non-defaults as defaults FROM THIS EXACT CHUNK
-        n_defaults = len(defaults)
-        if n_defaults > 0:
-            if len(non_defaults) > n_defaults:
-                non_defaults = non_defaults.sample(n_defaults, random_state=42)
-            
-            balanced_chunks.append(defaults)
-            balanced_chunks.append(non_defaults)
-            
-        print(f"Chunk {i+1}: Kept {n_defaults} defaults and {len(non_defaults)} non-defaults.")
-        
-    print("Combining all time-balanced chunks...")
-    final_sample = pd.concat(balanced_chunks)
-    
-    # Downsample to 100k rows total for fast modeling while keeping perfectly balanced
-    if len(final_sample) > 100000:
-        print("Downsampling to 100,000 rows...")
-        final_sample = final_sample.groupby('target').sample(n=50000, random_state=42)
-        
-    final_sample = final_sample.sample(frac=1, random_state=42).reset_index(drop=True)
-    
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    final_sample.to_csv(output_path, index=False)
-    print(f"Saved time-balanced sample to {output_path}")
-    print(f"Final shape: {final_sample.shape}")
-    print(final_sample['target'].value_counts())
+
+def source_sha256(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def assign_splits(frame):
+    """Assign eligibility from metadata only; no feature or score decisions."""
+    dates = pd.to_datetime(frame["issue_d"], format="%b-%Y", errors="raise")
+    if dates.isna().any():
+        raise ValueError("Missing issue_d prevents chronological assignment")
+    eligible = (
+        frame["term"].str.strip().eq(POLICY["term"])
+        & frame["loan_status"].isin(TARGET_MAP)
+    )
+    split = pd.Series("excluded", index=frame.index, dtype="string")
+    for name in ("train", "validation", "holdout"):
+        start, end = POLICY[name]
+        split.loc[eligible & dates.ge(start) & dates.lt(end)] = name
+    return split
+
+
+def read_contract(path=VALIDATION_PATH):
+    with open(path, encoding="utf-8") as handle:
+        report = json.load(handle)
+    if report["policy"] != POLICY or not report["integrity_passed"]:
+        raise ValueError("Split contract changed or integrity checks failed")
+    return report
+
+
+def load_development_data(path=RAW_DATA_PATH, report_path=VALIDATION_PATH, chunksize=50000):
+    """Return only train/validation; final holdout never enters model fitting.
+
+    CSV chunks may physically contain holdout records, but these are immediately
+    filtered before preprocessing. The full-file checksum is integrity-only.
+    """
+    report = read_contract(report_path)
+    if source_sha256(path) != report["source"]["sha256"]:
+        raise ValueError("Raw source changed: do not silently redefine frozen splits")
+    parts = {"train": [], "validation": []}
+    usecols = list(dict.fromkeys(report["preprocessing"]["raw_features"] + ["issue_d", "loan_status", "term"]))
+    for chunk in pd.read_csv(path, usecols=usecols, dtype="string", chunksize=chunksize):
+        splits = assign_splits(chunk)
+        for name in parts:
+            selected = chunk.loc[splits.eq(name)].copy()
+            if not selected.empty:
+                selected["target"] = selected["loan_status"].map(TARGET_MAP).astype("int8")
+                selected.index.name = "source_row"
+                parts[name].append(selected)
+    result = {name: pd.concat(chunks) for name, chunks in parts.items()}
+    for name, frame in result.items():
+        if len(frame) != report["splits"][name]["rows"]:
+            raise ValueError(f"{name} row count differs from frozen contract")
+    if not result["train"].index.intersection(result["validation"].index).empty:
+        raise ValueError("Development splits overlap")
+    return result["train"], result["validation"], report
+
 
 if __name__ == "__main__":
-    create_time_balanced_sample(RAW_DATA_PATH, SAMPLED_DATA_PATH)
+    raise SystemExit("Run src/check_leakage.py to validate/freeze cohorts. No balanced sample is generated.")

@@ -1,46 +1,89 @@
+"""Prediction-time exclusions and training-fitted preprocessing."""
+import numpy as np
 import pandas as pd
-import os
 
-# Define paths relative to the script location
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+try:
+    from .feature_engineering import engineer_features
+except ImportError:
+    from feature_engineering import engineer_features
 
-INPUT_PATH = os.path.join(PROJECT_ROOT, "data", "interim", "loan_data_stratified_sample.csv")
-OUTPUT_PATH = os.path.join(PROJECT_ROOT, "data", "processed", "loan_data_filtered_sample.csv")
+EXCLUDED_COLUMNS = {
+    "id", "member_id", "url", "emp_title", "title", "desc",
+    "target", "target_default", "loan_status", "issue_d", "source_row", "split",
+    "funded_amnt", "funded_amnt_inv", "out_prncp", "out_prncp_inv",
+    "total_pymnt", "total_pymnt_inv", "total_rec_prncp", "total_rec_int",
+    "total_rec_late_fee", "recoveries", "collection_recovery_fee",
+    "last_pymnt_d", "last_pymnt_amnt", "next_pymnt_d", "last_credit_pull_d",
+    "debt_settlement_flag", "debt_settlement_flag_date", "settlement_status",
+    "settlement_date", "settlement_amount", "settlement_percentage", "settlement_term",
+    "last_fico_range_high", "last_fico_range_low", "pymnt_plan",
+    "deferral_term", "payment_plan_start_date", "orig_projected_additional_accrued_interest",
+    "disbursement_method",
+}
+CATEGORICAL_COLUMNS = {
+    "term", "grade", "sub_grade", "emp_length", "home_ownership",
+    "verification_status", "purpose", "zip_code", "addr_state",
+    "earliest_cr_line", "initial_list_status", "application_type",
+    "verification_status_joint", "sec_app_earliest_cr_line",
+}
 
-def screen_features(df):
-    print(f"Initial shape: {df.shape}")
-    
-    # 1. Remove identifiers
-    identifiers = ['id', 'member_id', 'url', 'emp_title', 'title', 'desc']
-    df = df.drop(columns=[c for c in identifiers if c in df.columns])
-    
-    # 2. Remove leakage columns (post-loan features)
-    leakage_cols = [
-        'funded_amnt_inv', 'issue_d', 'out_prncp', 'out_prncp_inv',
-        'total_pymnt', 'total_pymnt_inv', 'total_rec_prncp', 'total_rec_int',
-        'total_rec_late_fee', 'recoveries', 'collection_recovery_fee',
-        'last_pymnt_d', 'last_pymnt_amnt', 'next_pymnt_d', 'last_credit_pull_d',
-        'debt_settlement_flag', 'debt_settlement_flag_date', 'settlement_status',
-        'settlement_date', 'settlement_amount', 'settlement_percentage', 'settlement_term',
-        'last_fico_range_high', 'last_fico_range_low' # <-- ADDED THESE SNEAKY LEAKAGE COLUMNS
-    ]
-    df = df.drop(columns=[c for c in leakage_cols if c in df.columns])
-    
-    # 3. Remove hardship columns
-    hardship_cols = [c for c in df.columns if 'hardship' in c]
-    df = df.drop(columns=hardship_cols)
-    
-    # 4. Remove columns with > 80% missing values
-    missing_pct = df.isnull().mean()
-    cols_to_drop = missing_pct[missing_pct > 0.8].index
-    df = df.drop(columns=cols_to_drop)
-    
-    print(f"Final shape after screening: {df.shape}")
-    return df
+
+def candidate_columns(columns):
+    return [c for c in columns if c not in EXCLUDED_COLUMNS and "hardship" not in c]
+
+
+def normalize_features(df, columns):
+    out = df.loc[:, columns].copy()
+    for col in columns:
+        if col in CATEGORICAL_COLUMNS:
+            out[col] = out[col].astype("string").str.strip().replace("", pd.NA)
+        else:
+            out[col] = pd.to_numeric(out[col], errors="raise").astype(float)
+            out[col] = out[col].replace([np.inf, -np.inf], np.nan)
+    for col in ("annual_inc", "loan_amnt", "total_bal_ex_mort", "open_acc", "total_acc"):
+        if col in out:
+            out.loc[out[col] < 0, col] = np.nan
+    return out
+
+
+def screen_features(df, feature_columns=None):
+    """Fit missingness filtering on train, or apply its explicit column list."""
+    columns = candidate_columns(df.columns) if feature_columns is None else feature_columns
+    if set(columns) - set(candidate_columns(columns)):
+        raise ValueError("Metadata or post-origination feature in requested schema")
+    out = normalize_features(df, columns)
+    if feature_columns is None:
+        out = out.loc[:, out.isna().mean().le(0.8)]
+    return out
+
+
+def fit_preprocessor(train):
+    screened = screen_features(train)
+    engineered = engineer_features(screened.copy())
+    schema = {
+        "raw_features": screened.columns.tolist(),
+        "features": engineered.columns.tolist(),
+        "dropped_missing": [c for c in candidate_columns(train.columns) if c not in screened],
+        "categories": {
+            c: sorted(engineered[c].dropna().astype(str).unique().tolist())
+            for c in engineered if c in CATEGORICAL_COLUMNS
+        },
+        "numeric_missing": "NaN, handled natively by LightGBM; no imputation",
+        "unseen_category": "missing using training category vocabulary",
+    }
+    return transform_features(train, schema), schema
+
+
+def transform_features(df, schema):
+    out = engineer_features(screen_features(df, schema["raw_features"]))
+    out = out.loc[:, schema["features"]]
+    for col, categories in schema["categories"].items():
+        known = out[col].where(out[col].isin(categories))
+        out[col] = pd.Categorical(known, categories=categories)
+    numeric = out.select_dtypes(include="number").columns
+    out[numeric] = out[numeric].replace([np.inf, -np.inf], np.nan)
+    return out
+
 
 if __name__ == "__main__":
-    df = pd.read_csv(INPUT_PATH, low_memory=False)
-    df_filtered = screen_features(df)
-    df_filtered.to_csv(OUTPUT_PATH, index=False)
-    print(f"Saved filtered data to {OUTPUT_PATH}")
+    raise SystemExit("Preprocessing is fitted on training only by check_leakage.py; no pooled CSV screening.")
