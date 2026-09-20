@@ -1,0 +1,816 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "Explainability",
+  "displayName": "Risk Drivers",
+  "displayOption": "FitToPage",
+  "width": 1280,
+  "height": 720,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F4F6F9'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_01",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_02",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_03",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_04",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_05",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_06",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_07",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_08",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_09",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_10",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_11",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_12",
+      "target": "Explainability_13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_03",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_05",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_06",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_08",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_09",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "Explainability_13",
+      "target": "Explainability_12",
+      "type": "NoFilter"
+    }
+  ]
+}

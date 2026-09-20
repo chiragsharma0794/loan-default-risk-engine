@@ -1,0 +1,36 @@
+table feature_importance
+	lineageTag: 70fb9f91-86b5-4402-908f-8a8eb095d567
+
+	measure 'Training Gain' = SELECTEDVALUE('feature_importance'[importance])
+		formatString: #,0.0
+		lineageTag: 0f73e4a8-a283-44f4-835d-1028a43d5d9b
+
+	column feature
+		dataType: string
+		lineageTag: 272b2e46-5db1-4a54-b979-585ac406e50e
+		summarizeBy: none
+		sourceColumn: feature
+
+	column importance
+		dataType: double
+		lineageTag: 2705fa81-9052-425a-9384-5061ec10ac35
+		summarizeBy: none
+		sourceColumn: importance
+
+	column importance_rank
+		dataType: int64
+		lineageTag: f3066da7-8c9b-49c3-9a4f-c5bc1bc02d32
+		summarizeBy: none
+		sourceColumn: importance_rank
+
+	partition feature_importance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(SourceFolder & "/feature_importance.csv"), [Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"feature", type text}, {"importance", type number}, {"importance_rank", Int64.Type}}, "en-US")
+				in
+				    Typed
+

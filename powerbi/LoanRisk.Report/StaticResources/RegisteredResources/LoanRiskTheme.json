@@ -1,0 +1,35 @@
+{
+  "name": "Loan Risk - stakeholder",
+  "dataColors": [
+    "#35699A",
+    "#B65D63",
+    "#548672",
+    "#C39A4C",
+    "#7C91AB"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#172B4D",
+  "tableAccent": "#35699A",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI",
+      "fontSize": 14,
+      "color": "#172B4D"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 11,
+      "color": "#617087"
+    },
+    "callout": {
+      "fontFace": "Segoe UI",
+      "fontSize": 30,
+      "color": "#172B4D"
+    },
+    "header": {
+      "fontFace": "Segoe UI",
+      "fontSize": 14,
+      "color": "#172B4D"
+    }
+  }
+}

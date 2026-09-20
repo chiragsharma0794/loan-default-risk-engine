@@ -1,0 +1,5 @@
+expression SourceFolder = "C:/Users/chirag/OneDrive/Desktop/loan-default-risk-engine-main/outputs/powerbi" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 10cad50a-63c7-4806-af91-33ea5ec5b48f
+
+	annotation PBI_ResultType = Text
+

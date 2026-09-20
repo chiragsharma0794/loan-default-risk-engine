@@ -36,3 +36,9 @@ secrets*.json
 *.log
 .DS_Store
 Thumbs.db
+
+# Power BI local caches and embedded loan data
+powerbi/**/.pbi/
+powerbi/**/*.abf
+powerbi/**/*.pbix
+.local-backups/

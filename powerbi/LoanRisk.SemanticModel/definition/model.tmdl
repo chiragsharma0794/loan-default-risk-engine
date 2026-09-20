@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["SourceFolder", "calibration", "feature_importance", "model_performance", "risk_band_summary", "risk_bands", "scored_loans", "shap_importance"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table calibration
+ref table feature_importance
+ref table model_performance
+ref table risk_band_summary
+ref table risk_bands
+ref table scored_loans
+ref table shap_importance
+
+ref cultureInfo en-US
+

@@ -1,0 +1,155 @@
+table scored_loans
+	lineageTag: e16600ba-0b25-41ee-befe-7e037333861c
+
+	measure 'Total Loans' = COALESCE(COUNTROWS('scored_loans'), 0)
+		formatString: #,0
+		lineageTag: c8a68cf0-7baf-49b8-b23d-e83d2c6cac3c
+
+	measure 'Actual Defaults' = COALESCE(SUM('scored_loans'[actual_default]), 0)
+		formatString: #,0
+		lineageTag: 430a9ecc-40bf-44e5-a556-0b1fa8470bd3
+
+	measure 'Default Rate' = DIVIDE([Actual Defaults], [Total Loans])
+		formatString: 0.00%
+		lineageTag: f4d3a928-97c4-4d67-ac76-561c3f44c443
+
+	measure 'Average Predicted Probability' = AVERAGE('scored_loans'[predicted_probability])
+		formatString: 0.00%
+		lineageTag: 4656f04f-82e6-4980-b756-be40fb2d972d
+
+	measure 'Loans at 20% or Above' = CALCULATE([Total Loans], KEEPFILTERS('risk_bands'[risk_band_id] = 4))
+		formatString: #,0
+		lineageTag: c7658c69-9e15-45e5-b33a-86ba4857e8fb
+
+	measure 'Share at 20% or Above' = DIVIDE([Loans at 20% or Above], [Total Loans])
+		formatString: 0.00%
+		lineageTag: 7a3260ca-9cb3-4f78-8293-de40482b8178
+
+	measure 'Average Loan Amount' = AVERAGE('scored_loans'[loan_amount])
+		formatString: #,0
+		lineageTag: 99c40262-137f-4c6b-ab44-5fe3dec1551e
+
+	measure 'Average Annual Income' = AVERAGE('scored_loans'[annual_income])
+		formatString: #,0
+		lineageTag: 3cfce20f-258d-4c78-98c3-203593dfbb5a
+
+	column source_row
+		dataType: int64
+		isHidden
+		lineageTag: bc7dbc1c-0055-4304-be18-1dbc70c805aa
+		summarizeBy: none
+		sourceColumn: source_row
+
+	column actual_default
+		dataType: int64
+		lineageTag: d1a1f68b-743b-4e5a-b330-b849aaad673a
+		summarizeBy: none
+		sourceColumn: actual_default
+
+	column predicted_probability
+		dataType: double
+		lineageTag: 18938e7e-f479-4300-a240-3868331cd9fa
+		summarizeBy: none
+		sourceColumn: predicted_probability
+
+	column predicted_class
+		dataType: int64
+		isHidden
+		lineageTag: 7e6b0b4e-261a-4b7a-a89f-e905375dd49f
+		summarizeBy: none
+		sourceColumn: predicted_class
+
+	column risk_band_id
+		dataType: int64
+		isHidden
+		lineageTag: d6ec78e6-312c-42a9-9ac9-e3127d88d09b
+		summarizeBy: none
+		sourceColumn: risk_band_id
+
+	column risk_band
+		dataType: string
+		lineageTag: 4040c97c-0af1-4598-8f0a-29f195e43aed
+		summarizeBy: none
+		sourceColumn: risk_band
+		sortByColumn: risk_band_id
+
+	column issue_month
+		dataType: dateTime
+		formatString: MMM yyyy
+		lineageTag: 46bd43ad-c831-4440-b1b0-8907a9d628ef
+		summarizeBy: none
+		sourceColumn: issue_month
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column term_months
+		dataType: int64
+		isHidden
+		lineageTag: 97e64b2b-2f14-4893-b9ed-3700eab8805f
+		summarizeBy: none
+		sourceColumn: term_months
+
+	column loan_amount
+		dataType: double
+		lineageTag: a9c4b930-cb7a-46a3-94c6-a682d3cfdad7
+		summarizeBy: none
+		sourceColumn: loan_amount
+
+	column annual_income
+		dataType: double
+		lineageTag: b51cd3ef-5e82-44c9-98ab-ac6ccfad0481
+		summarizeBy: none
+		sourceColumn: annual_income
+
+	column interest_rate_pct
+		dataType: double
+		lineageTag: 1fbfae3e-54f5-4d55-898a-d0f71fc7a37c
+		summarizeBy: none
+		sourceColumn: interest_rate_pct
+
+	column grade
+		dataType: string
+		lineageTag: 8cb14f88-963b-42ff-9645-47b7e026de30
+		summarizeBy: none
+		sourceColumn: grade
+
+	column sub_grade
+		dataType: string
+		lineageTag: 407ecd5e-cb73-47c5-a8ca-96d340956a7d
+		summarizeBy: none
+		sourceColumn: sub_grade
+
+	column purpose
+		dataType: string
+		lineageTag: 6a04c1ef-b635-4338-9f31-06915d8af25e
+		summarizeBy: none
+		sourceColumn: purpose
+
+	column home_ownership
+		dataType: string
+		lineageTag: ea6a8333-acad-4ca0-986e-0c2d55ea615f
+		summarizeBy: none
+		sourceColumn: home_ownership
+
+	column state
+		dataType: string
+		lineageTag: ae9a3ac1-d768-4cbb-8930-15f999564e9f
+		summarizeBy: none
+		sourceColumn: state
+
+	column 'Purpose label' = SUBSTITUTE([purpose], "_", " ")
+		dataType: string
+		lineageTag: 87ac04e5-6da9-4fbf-ac57-7d0ec0ee7676
+		summarizeBy: none
+
+	partition scored_loans = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(SourceFolder & "/scored_loans.csv"), [Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"source_row", Int64.Type}, {"actual_default", Int64.Type}, {"predicted_probability", type number}, {"predicted_class", Int64.Type}, {"risk_band_id", Int64.Type}, {"risk_band", type text}, {"issue_month", type date}, {"term_months", Int64.Type}, {"loan_amount", type number}, {"annual_income", type number}, {"interest_rate_pct", type number}, {"grade", type text}, {"sub_grade", type text}, {"purpose", type text}, {"home_ownership", type text}, {"state", type text}}, "en-US")
+				in
+				    Typed
+

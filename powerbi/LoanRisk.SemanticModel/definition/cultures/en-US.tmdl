@@ -1,0 +1,596 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "calibration.calibration_default_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "calibration",
+			          "ConceptualProperty": "Calibration Default Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Actual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "calibration.calibration_mean_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "calibration",
+			          "ConceptualProperty": "Calibration Mean Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Predicted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "feature_importance.training_gain": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "feature_importance",
+			          "ConceptualProperty": "Training Gain"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "model_performance.model": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "model"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "model_performance.model_average_precision": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "Model Average Precision"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average precision": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "model_performance.model_brier_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "Model Brier Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Brier score": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "model_performance.model_log_loss": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "Model Log Loss"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "model_performance.model_rocauc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "Model ROC-AUC"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "scored_loans.actual_defaults": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Actual Defaults"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Actual defaults": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Defaults": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.average_predicted_probability": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Average Predicted Probability"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average predicted default risk": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Predicted default risk": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Predicted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.default_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Default Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Actual default rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Default rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Actual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.loans_at_20_or_above": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Loans at 20% or Above"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "scored_loans.state": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "state"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "scored_loans.total_loans": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Total Loans"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Loans evaluated": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Loans": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Selected loans": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "shap_importance.mean_absolute_shap": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "shap_importance",
+			          "ConceptualProperty": "Mean Absolute SHAP"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mean absolute SHAP": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.share_at_20_or_above": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Share at 20% or Above"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Higher-risk share": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.issue_month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "issue_month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Issue month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.purpose_label": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Purpose label"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Loan purpose": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.grade": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "grade"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Loan grade": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.average_loan_amount": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Average Loan Amount"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average loan amount": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scored_loans.average_annual_income": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "scored_loans",
+			          "ConceptualProperty": "Average Annual Income"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average annual income": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "risk_bands.band_label": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "risk_bands",
+			          "ConceptualProperty": "Band label"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Risk band": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "model_performance.final_rocauc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "Final ROC-AUC"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ROC-AUC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Tuned ROC-AUC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "model_performance.rocauc_gain": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "ROC-AUC Gain"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "AUC improvement": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "ROC-AUC improvement": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "calibration.calibration_loans": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "calibration",
+			          "ConceptualProperty": "Calibration Loans"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Loans": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "shap_importance.shap_importance_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "shap_importance",
+			          "ConceptualProperty": "SHAP Importance Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Share of total influence": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "model_performance.baseline_rocauc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "model_performance",
+			          "ConceptualProperty": "Baseline ROC-AUC"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Baseline ROC-AUC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

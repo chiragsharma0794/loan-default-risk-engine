@@ -1,0 +1,70 @@
+table calibration
+	lineageTag: c6c3d7ad-5983-4b22-a61a-f237fa757732
+
+	measure 'Calibration Loans' = SUM('calibration'[rows])
+		formatString: #,0
+		lineageTag: 3bcc6a4f-5b62-4090-8bbe-9fdf30fdd71c
+
+	measure 'Calibration Mean Score' =
+			DIVIDE(SUMX('calibration', 'calibration'[rows] * 'calibration'[mean_probability]),
+			           [Calibration Loans])
+		formatString: 0.00%
+		lineageTag: d1a7c0ff-ef6b-45e2-9cda-d3be177291e0
+
+	measure 'Calibration Default Rate' = DIVIDE(SUM('calibration'[defaults]), [Calibration Loans])
+		formatString: 0.00%
+		lineageTag: 3ff07f02-7c33-472f-b806-0dd296f9f759
+
+	column model
+		dataType: string
+		lineageTag: 3dc6971a-9c81-459d-a07c-1a8decdac175
+		summarizeBy: none
+		sourceColumn: model
+
+	column bin_lower
+		dataType: double
+		lineageTag: fb324914-cbf0-4cda-9515-a5e4e31a3090
+		summarizeBy: none
+		sourceColumn: bin_lower
+
+	column bin_upper
+		dataType: double
+		lineageTag: ac9e18a6-33ca-4e85-b077-26b9d806715c
+		summarizeBy: none
+		sourceColumn: bin_upper
+
+	column rows
+		dataType: int64
+		lineageTag: cf43aa1e-c1ca-4598-88cb-b9e6532f066a
+		summarizeBy: none
+		sourceColumn: rows
+
+	column defaults
+		dataType: int64
+		lineageTag: 804054e9-75cc-405f-bda5-c3d76423143d
+		summarizeBy: none
+		sourceColumn: defaults
+
+	column mean_probability
+		dataType: double
+		lineageTag: 3f80764c-86ca-4c93-9c63-6be3fdae4df4
+		summarizeBy: none
+		sourceColumn: mean_probability
+
+	column observed_default_rate
+		dataType: double
+		lineageTag: dd06fd3e-6b15-497c-83dd-d1302f12c40a
+		summarizeBy: none
+		sourceColumn: observed_default_rate
+
+	partition calibration = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(SourceFolder & "/calibration.csv"), [Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"model", type text}, {"bin_lower", type number}, {"bin_upper", type number}, {"rows", Int64.Type}, {"defaults", Int64.Type}, {"mean_probability", type number}, {"observed_default_rate", type number}}, "en-US")
+				in
+				    Typed
+

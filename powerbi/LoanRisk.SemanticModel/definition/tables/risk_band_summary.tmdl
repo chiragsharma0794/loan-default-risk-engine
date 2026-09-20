@@ -1,0 +1,53 @@
+table risk_band_summary
+	isHidden
+	lineageTag: 57a1fbd7-7782-4a8a-b574-84a82b109739
+
+	column risk_band_id
+		dataType: int64
+		isHidden
+		lineageTag: 7c36888d-6476-4764-9ef2-7a19daa3c3db
+		summarizeBy: none
+		sourceColumn: risk_band_id
+
+	column loan_count
+		dataType: int64
+		lineageTag: b175a70f-5a37-4709-9841-738027d41000
+		summarizeBy: none
+		sourceColumn: loan_count
+
+	column default_count
+		dataType: int64
+		lineageTag: 064460ec-bbc4-4963-9242-1d4d7696c692
+		summarizeBy: none
+		sourceColumn: default_count
+
+	column default_rate
+		dataType: double
+		lineageTag: b40232c7-a280-4016-849b-2d8455da8396
+		summarizeBy: none
+		sourceColumn: default_rate
+
+	column avg_predicted_probability
+		dataType: double
+		lineageTag: b6db623c-b02d-44af-99c8-0d1930848224
+		summarizeBy: none
+		sourceColumn: avg_predicted_probability
+
+	column risk_band
+		dataType: string
+		lineageTag: 8745952b-6781-4d2d-b901-bacc52c25d9a
+		summarizeBy: none
+		sourceColumn: risk_band
+		sortByColumn: risk_band_id
+
+	partition risk_band_summary = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(SourceFolder & "/risk_band_summary.csv"), [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"risk_band_id", Int64.Type}, {"loan_count", Int64.Type}, {"default_count", Int64.Type}, {"default_rate", type number}, {"avg_predicted_probability", type number}, {"risk_band", type text}}, "en-US")
+				in
+				    Typed
+

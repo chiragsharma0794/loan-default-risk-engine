@@ -1,0 +1,215 @@
+table model_performance
+	lineageTag: 942bd894-7f05-447a-93af-2e2925d3f97a
+
+	measure 'Model ROC-AUC' = SELECTEDVALUE('model_performance'[roc_auc])
+		formatString: 0.0000
+		lineageTag: d3dc44db-13ac-425c-9c1b-35f32e678444
+
+	measure 'Model Average Precision' = SELECTEDVALUE('model_performance'[average_precision])
+		formatString: 0.0000
+		lineageTag: 54c638b8-f74a-46b8-9ad8-5a2f28c25865
+
+	measure 'Model Log Loss' = SELECTEDVALUE('model_performance'[log_loss])
+		formatString: 0.0000
+		lineageTag: 71f9674d-99e1-4b17-9a6f-a321e3f3fc99
+
+	measure 'Model Brier Score' = SELECTEDVALUE('model_performance'[brier_score])
+		formatString: 0.0000
+		lineageTag: 4aea2c73-7b58-4a46-bc4d-7c1a4c1ac736
+
+	measure 'Final ROC-AUC' =
+			CALCULATE([Model ROC-AUC], REMOVEFILTERS('model_performance'),
+			              'model_performance'[is_final] = 1)
+		formatString: 0.0000
+		lineageTag: 733cb2dd-3151-4525-8b16-eeeaf013da7b
+
+	measure 'Baseline ROC-AUC' =
+			CALCULATE([Model ROC-AUC], REMOVEFILTERS('model_performance'),
+			              'model_performance'[model] = "baseline")
+		formatString: 0.0000
+		lineageTag: a294efb4-7b9a-4998-a5e0-238569003340
+
+	measure 'ROC-AUC Gain' = [Final ROC-AUC] - [Baseline ROC-AUC]
+		formatString: 0.0000
+		lineageTag: 74b0a2c7-2a2e-48f4-b653-e51dcae350a5
+
+	measure 'Final Threshold' =
+			CALCULATE(SELECTEDVALUE('model_performance'[threshold]),
+			              REMOVEFILTERS('model_performance'), 'model_performance'[is_final] = 1)
+		formatString: 0.0
+		lineageTag: f98e1800-56e6-4333-b602-56c70888ddb5
+
+	measure 'Final Recall' =
+			CALCULATE(SELECTEDVALUE('model_performance'[recall]),
+			              REMOVEFILTERS('model_performance'), 'model_performance'[is_final] = 1)
+		formatString: 0.00%
+		lineageTag: 2578a41b-8526-4426-a9d4-d0f7daf12bb6
+
+	measure 'Final Precision Label' =
+			VAR PrecisionValue =
+			        CALCULATE(SELECTEDVALUE('model_performance'[precision]),
+			                  REMOVEFILTERS('model_performance'), 'model_performance'[is_final] = 1)
+			    RETURN IF(ISBLANK(PrecisionValue), "Undefined", FORMAT(PrecisionValue, "0.00%"))
+		lineageTag: 28e11928-8acf-4ced-b2fc-81a1cf1f2bd9
+
+	measure 'Final TN' =
+			CALCULATE(SELECTEDVALUE('model_performance'[tn]),
+			              REMOVEFILTERS('model_performance'), 'model_performance'[is_final] = 1)
+		formatString: #,0
+		lineageTag: 84672346-b0ae-4ad8-976a-132c2038470d
+
+	measure 'Final FP' =
+			CALCULATE(SELECTEDVALUE('model_performance'[fp]),
+			              REMOVEFILTERS('model_performance'), 'model_performance'[is_final] = 1)
+		formatString: #,0
+		lineageTag: ff85771c-001c-46eb-b90e-ca2f33972fa3
+
+	measure 'Final FN' =
+			CALCULATE(SELECTEDVALUE('model_performance'[fn]),
+			              REMOVEFILTERS('model_performance'), 'model_performance'[is_final] = 1)
+		formatString: #,0
+		lineageTag: 5f204f00-39f6-4e23-beec-f26f731a04a0
+
+	measure 'Final TP' =
+			CALCULATE(SELECTEDVALUE('model_performance'[tp]),
+			              REMOVEFILTERS('model_performance'), 'model_performance'[is_final] = 1)
+		formatString: #,0
+		lineageTag: 6d9a17e7-ba8a-4fe4-b32f-74a1b2512683
+
+	column model
+		dataType: string
+		lineageTag: 25b3da7e-8d3d-4d21-a410-5d630e945cc0
+		summarizeBy: none
+		sourceColumn: model
+
+	column is_final
+		dataType: int64
+		lineageTag: 754ecb84-ac13-4827-8cd7-2695c0eff73a
+		summarizeBy: none
+		sourceColumn: is_final
+
+	column split
+		dataType: string
+		lineageTag: 78fb998b-c100-412f-bac9-df967bb62e1a
+		summarizeBy: none
+		sourceColumn: split
+
+	column loan_count
+		dataType: int64
+		lineageTag: e4b6d285-6c64-4004-bf74-190dff90229d
+		summarizeBy: none
+		sourceColumn: loan_count
+
+	column default_count
+		dataType: int64
+		lineageTag: eb5bbfc6-98f2-4051-895d-7cf799e4094a
+		summarizeBy: none
+		sourceColumn: default_count
+
+	column roc_auc
+		dataType: double
+		lineageTag: 53b728a4-bc35-4582-8b96-3d65e4a896cf
+		summarizeBy: none
+		sourceColumn: roc_auc
+
+	column average_precision
+		dataType: double
+		lineageTag: f4479c40-8354-4a05-8fe1-86ca4953d166
+		summarizeBy: none
+		sourceColumn: average_precision
+
+	column log_loss
+		dataType: double
+		lineageTag: dfe31a6a-2e61-45cc-93cb-bc7ad9c27ee3
+		summarizeBy: none
+		sourceColumn: log_loss
+
+	column brier_score
+		dataType: double
+		lineageTag: bb7e96be-bdd1-4f83-ad42-1e83d017fa7f
+		summarizeBy: none
+		sourceColumn: brier_score
+
+	column threshold
+		dataType: double
+		lineageTag: c5f453c5-48ec-4f2a-be75-665ab1d5a7c5
+		summarizeBy: none
+		sourceColumn: threshold
+
+	column threshold_rule
+		dataType: string
+		lineageTag: 8f3bcc08-b1b7-4707-b376-83bd9ca14211
+		summarizeBy: none
+		sourceColumn: threshold_rule
+
+	column precision
+		dataType: double
+		lineageTag: ecde269b-71b4-4d08-962a-4ea6d38d268a
+		summarizeBy: none
+		sourceColumn: precision
+
+	column recall
+		dataType: double
+		lineageTag: 2823ca73-27f2-4d17-8ddc-1f06ef83a3f5
+		summarizeBy: none
+		sourceColumn: recall
+
+	column predicted_positive_rows
+		dataType: int64
+		lineageTag: f771d31b-a0c7-476d-9c27-e6f766b9135c
+		summarizeBy: none
+		sourceColumn: predicted_positive_rows
+
+	column mean_probability
+		dataType: double
+		lineageTag: 4d109e6f-ebe1-4203-96d3-a4f82fc9650c
+		summarizeBy: none
+		sourceColumn: mean_probability
+
+	column observed_default_rate
+		dataType: double
+		lineageTag: 0c92ff47-8ab9-4d2d-9fb1-f7af774cd376
+		summarizeBy: none
+		sourceColumn: observed_default_rate
+
+	column mean_prediction_minus_default_rate
+		dataType: double
+		lineageTag: 2321585e-6f0d-4e5d-a5f1-ab08e744fb22
+		summarizeBy: none
+		sourceColumn: mean_prediction_minus_default_rate
+
+	column tn
+		dataType: int64
+		lineageTag: a18e3b46-02d6-4b4e-81dd-42ab568dd0c3
+		summarizeBy: none
+		sourceColumn: tn
+
+	column fp
+		dataType: int64
+		lineageTag: b6f727cc-547d-486c-8a4d-af2494d69646
+		summarizeBy: none
+		sourceColumn: fp
+
+	column fn
+		dataType: int64
+		lineageTag: 31d37c67-6c8a-487e-a93e-8fc97e51d5b1
+		summarizeBy: none
+		sourceColumn: fn
+
+	column tp
+		dataType: int64
+		lineageTag: d664c6b6-9253-4737-b1f3-5e40209345ab
+		summarizeBy: none
+		sourceColumn: tp
+
+	partition model_performance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(SourceFolder & "/model_performance.csv"), [Delimiter=",", Columns=21, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"model", type text}, {"is_final", Int64.Type}, {"split", type text}, {"loan_count", Int64.Type}, {"default_count", Int64.Type}, {"roc_auc", type number}, {"average_precision", type number}, {"log_loss", type number}, {"brier_score", type number}, {"threshold", type number}, {"threshold_rule", type text}, {"precision", type number}, {"recall", type number}, {"predicted_positive_rows", Int64.Type}, {"mean_probability", type number}, {"observed_default_rate", type number}, {"mean_prediction_minus_default_rate", type number}, {"tn", Int64.Type}, {"fp", Int64.Type}, {"fn", Int64.Type}, {"tp", Int64.Type}}, "en-US")
+				in
+				    Typed
+

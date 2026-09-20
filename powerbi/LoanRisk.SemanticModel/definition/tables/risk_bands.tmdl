@@ -1,0 +1,52 @@
+table risk_bands
+	lineageTag: 9ad5051d-9955-4ff9-b76a-d76ef15662ba
+
+	column risk_band_id
+		dataType: int64
+		isHidden
+		lineageTag: 10728fb2-83b4-4971-83f4-d269bca2ab1c
+		summarizeBy: none
+		sourceColumn: risk_band_id
+
+	column risk_band
+		dataType: string
+		lineageTag: f9409ff8-6467-48e7-ae48-7dd5b11d75c5
+		summarizeBy: none
+		sourceColumn: risk_band
+		sortByColumn: risk_band_id
+
+	column lower_probability
+		dataType: double
+		lineageTag: 582980c8-7375-4382-bffa-0cee70119cec
+		summarizeBy: none
+		sourceColumn: lower_probability
+
+	column upper_probability
+		dataType: double
+		lineageTag: ab38b242-d737-4ead-95ef-ec0e38b57fae
+		summarizeBy: none
+		sourceColumn: upper_probability
+
+	column upper_inclusive
+		dataType: int64
+		lineageTag: a405a825-b388-4dde-a57e-9b66bc2e3444
+		summarizeBy: none
+		sourceColumn: upper_inclusive
+
+	column 'Band label' = SWITCH([risk_band_id], 1, "Below 10%", 2, "10% - <15%", 3, "15% - <20%", 4, ">=20%")
+		dataType: string
+		lineageTag: 2b592223-4749-4cae-a62b-bf6b7038f349
+		summarizeBy: none
+		sortByColumn: risk_band_id
+
+	partition risk_bands = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(SourceFolder & "/risk_bands.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"risk_band_id", Int64.Type}, {"risk_band", type text}, {"lower_probability", type number}, {"upper_probability", type number}, {"upper_inclusive", Int64.Type}}, "en-US")
+				in
+				    Typed
+

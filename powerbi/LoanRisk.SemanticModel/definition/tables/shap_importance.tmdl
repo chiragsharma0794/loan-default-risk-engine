@@ -1,0 +1,51 @@
+table shap_importance
+	lineageTag: c50bbc75-2c56-4ba6-987c-3c12eb3d3884
+
+	measure 'Mean Absolute SHAP' = SELECTEDVALUE('shap_importance'[mean_abs_shap])
+		formatString: 0.0000
+		lineageTag: 37c4dcd6-64f0-4a56-9c75-784b2f3bcd44
+
+	measure 'SHAP Importance Share' = SELECTEDVALUE('shap_importance'[importance_share])
+		formatString: 0.00%
+		lineageTag: 21d6ff1b-c589-421b-86fb-042867cdcffc
+
+	column importance_rank
+		dataType: int64
+		lineageTag: 79166d91-07c4-40fe-80d1-d93c6c7572e8
+		summarizeBy: none
+		sourceColumn: importance_rank
+
+	column feature
+		dataType: string
+		lineageTag: a9b581e3-0c73-4262-b13b-94f0b8fe9b68
+		summarizeBy: none
+		sourceColumn: feature
+
+	column mean_abs_shap
+		dataType: double
+		lineageTag: 00e653c6-7a38-4c15-9efc-116a8a6b47c4
+		summarizeBy: none
+		sourceColumn: mean_abs_shap
+
+	column importance_share
+		dataType: double
+		lineageTag: b2594a06-f27e-465b-8d50-838162cfba51
+		summarizeBy: none
+		sourceColumn: importance_share
+
+	column 'Feature label' = SWITCH([feature], "int_rate", "Interest rate", "annual_inc", "Annual income", "sub_grade", "Loan sub-grade", "zip_code", "ZIP code", "acc_open_past_24mths", "Accounts opened (2yr)", "earliest_cr_line", "Earliest credit line", "log_annual_inc", "Annual income (log)", "purpose", "Loan purpose", "loan_to_inc_ratio", "Loan-to-income ratio", "inq_last_6mths", "Credit inquiries (6 months)", [feature])
+		dataType: string
+		lineageTag: fb247cac-7c71-4b9c-8711-685b58b720a4
+		summarizeBy: none
+
+	partition shap_importance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(SourceFolder & "/shap_importance.csv"), [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"importance_rank", Int64.Type}, {"feature", type text}, {"mean_abs_shap", type number}, {"importance_share", type number}}, "en-US")
+				in
+				    Typed
+

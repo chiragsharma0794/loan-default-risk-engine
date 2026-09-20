@@ -1,0 +1,8 @@
+relationship fdeae009-e063-5313-962f-038b5f8da439
+	fromColumn: scored_loans.risk_band_id
+	toColumn: risk_bands.risk_band_id
+
+relationship 4eef7771-a0c0-571f-844c-c1fb48434f16
+	fromColumn: calibration.model
+	toColumn: model_performance.model
+
