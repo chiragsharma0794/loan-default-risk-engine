@@ -1,6 +1,6 @@
 # Power BI dashboard specification
 
-Design date: 2026-09-19. The report is specified but not implemented: the repository has no PBIX/PBIP/PBIT. Power BI editing was unavailable during preparation; no running Desktop process or executable at its standard installation path was found. DAX execution, rendering and interactions still need testing in Power BI.
+Design date: 2026-09-19. This was the Stage 8 specification fallback. The report has since been implemented in [powerbi/LoanRisk.pbip](../powerbi/LoanRisk.pbip). See the [implementation notes](../powerbi/README.md) for Desktop checks, setup, and differences from the proposed layout below.
 
 ## Data and import contract
 
@@ -209,4 +209,4 @@ All seven CSV hashes and row counts match the frozen Stage 7 manifest. Table/col
 
 Before accepting the Power BI implementation: import with explicit types; create relationships/measures; compile all DAX; compare every reference above; confirm multi-select intersections and empty-slice blanks; ensure pages 3–4 and fixed AUC do not respond to portfolio slicers; check reset/navigation behavior; exclude empty calibration bins; review page rendering at 100% and keyboard order. Confirm no clipped titles, misleading totals or summation of AUC. Save a PBIX/PBIP only after these checks.
 
-The specification is ready for implementation. Acceptance checks above remain open until the report runs in Power BI.
+Desktop implementation and core acceptance checks are complete; remaining portability/accessibility checks are listed in the [implementation notes](../powerbi/README.md).

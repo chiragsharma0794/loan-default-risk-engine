@@ -93,18 +93,26 @@ The [SHAP analysis](docs/explainability.md) covers effect directions, dependence
 
 ## Power BI Dashboard
 
-**Power BI dashboard design and reporting layer are complete, but the actual PBIX/PBIP dashboard has not yet been built or validated.**
+The [Power BI report](powerbi/LoanRisk.pbip) is implemented as a four-page stakeholder dashboard over the 2014 holdout (162,570 loans). It uses seven imported tables, two relationships and **28 DAX measures**; headline values and model metrics were checked against the frozen Python outputs.
 
-The design defines a data model, **28 DAX measures** and four pages:
+| Page | Question answered |
+|---|---|
+| **Overview** | How risky is the portfolio, and does actual default rate rise with predicted risk? |
+| **Portfolio Risk** | Which segments (issue month, purpose, grade, risk band) carry more default risk? |
+| **Model Performance** | Does the model rank riskier loans higher? ROC-AUC **0.6428 → 0.6595**, average precision 0.2158, Brier score 0.1145. |
+| **Risk Drivers** | Which inputs most influence the model's estimates (top 10 by mean absolute TreeSHAP)? |
 
-1. **Executive Risk Overview** — portfolio totals, probability bands and observed versus predicted risk.
-2. **Portfolio Risk Analysis** — comparisons by purpose, grade, state and issue month.
-3. **Model Performance** — baseline/tuned metrics, threshold results and calibration.
-4. **Explainability** — SHAP drivers, training gain and direction of model associations.
+![Overview page](docs/images/powerbi_overview.png)
 
-The local reporting export contains **seven CSVs (19.26 MB)** covering scored loans, risk-band summaries, model metrics, calibration and feature importance. Six aggregate/reference tables are included in Git; `outputs/powerbi/scored_loans.csv` stays local and must be generated for the full report. Probability bands are **[0,10%), [10%,15%), [15%,20%) and [20%,100%]**; they are reporting categories, not approval rules.
+![Portfolio Risk page](docs/images/powerbi_portfolio_risk.png)
 
-[Dashboard specification and DAX](docs/powerbi_dashboard_design.md) · [Reporting tables and data model](docs/powerbi_data.md)
+![Model Performance page](docs/images/powerbi_model_performance.png)
+
+![Risk Drivers page](docs/images/powerbi_risk_drivers.png)
+
+Probability bands are **[0,10%), [10%,15%), [15%,20%) and [20%,100%]**; they are descriptive reporting categories, not approval rules. At the 0.5 threshold the model flags no loans, so no operating threshold is proposed and threshold optimization is left to future work. SHAP bars show influence strength, not direction or causation. The screenshots are real Power BI Desktop captures; the report uses the viewer's regional number formatting, so `1,62,570` means 162,570 loans.
+
+The loan-level `outputs/powerbi/scored_loans.csv` stays local and must be generated for the full report. To open the project, set the `SourceFolder` parameter to your local `outputs/powerbi` folder and refresh. [Opening instructions and validation](powerbi/README.md) · [Design notes and DAX](docs/powerbi_dashboard_design.md) · [Reporting tables and data model](docs/powerbi_data.md)
 
 ## Project Structure
 
@@ -114,6 +122,7 @@ loan-default-risk-engine/
 ├── tests/            # split, modeling and reporting checks
 ├── docs/             # methodology and experiment reports
 ├── outputs/          # models, metrics, explanations and reporting tables
+├── powerbi/          # Desktop project, report and semantic model
 ├── data/             # local dataset and data dictionary
 ├── .gitignore
 ├── README.md
@@ -155,10 +164,10 @@ The [baseline report](docs/baseline_results.md) records the modeling environment
 - Discrimination is modest. Calibration and cost-based threshold selection need development data and a new independent evaluation cohort.
 - ZIP/date proxies and correlated features warrant subgroup, stability and fairness checks. SHAP does not establish compliance or causality.
 - Dataset acquisition, provenance and redistribution rights remain unresolved. A clean-environment rebuild has not been tested.
-- Power BI DAX execution, rendering and interaction checks remain pending; production deployment has not been verified.
+- Power BI Desktop rendering, DAX and core slicer interactions were checked. Clean-machine refresh, full accessibility testing and Service publishing remain untested; production deployment has not been verified.
 
 ## Next Steps
 
 A planned second modeling iteration would explore additional feature engineering, temporal cross-validation, CatBoost/XGBoost comparisons, a second tuning round using Optuna, and ensembles. Calibration and threshold optimization would use development data, followed by evaluation on a new held-out cohort.
 
-These experiments have not been run. Data provenance and timing need to be established first; the Power BI report also remains to be implemented from its specification.
+These experiments have not been run. Data provenance and timing need to be established first.
